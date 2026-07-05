@@ -31,7 +31,7 @@
 
 ## 接到現有工具（降低「又多一個東西」）
 
-- **Claude Code**：已裝使用者層級 skill `~\.claude\skills\lmh\SKILL.md`。在任何 Claude Code session 說「用本地模型…」或提到 lmh，Claude 就會透過 `lmh` CLI 呼叫本地模型並自行驗證輸出。
+- **Claude Code**：把 `integrations/claude-code-SKILL.md` 複製成 `~/.claude/skills/lmh/SKILL.md`（每台機器裝一次）。之後在任何 session 說「用本地模型…」或提到 lmh，Claude 就會透過 `lmh` CLI 呼叫本地模型並自行驗證輸出。
 - **Continue（VS Code）**：不經 harness，直接在 Continue 設定加 Ollama provider——chat 用 `qwen3.5:4b`，tab 自動補全用 `qwen2.5-coder:7b-instruct-q6_K`（模型名照 `profiles.json` 抄）。harness 的路由/critique 只在 CLI 路徑生效。
 - **Codex CLI**：同理，設 OpenAI 相容端點 `http://127.0.0.1:11434/v1` + 模型名即可直連 Ollama。
 - 若要讓編輯器也吃到 harness 路由，需做 OpenAI 相容 proxy（見 TODO），這次判定過度複雜、不做。
