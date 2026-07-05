@@ -1,0 +1,60 @@
+{
+  "ollama_url": "http://127.0.0.1:11434",
+  "hardware_note": "Tuned for RTX 3070 Laptop 8GB VRAM: prefer one active 4B-8B model at a time, use sequential critique/revision instead of parallel heavy models. Role rules and upgrade paths: docs/MODEL_SELECTION.md",
+  "models": {
+    "general": {
+      "name": "qwen3.5:4b",
+      "label": "Qwen3.5 4B",
+      "roles": ["chat", "router", "summarizer", "final_editor"],
+      "options": {
+        "temperature": 0.3,
+        "top_p": 0.9,
+        "num_ctx": 32768,
+        "num_predict": 768
+      }
+    },
+    "coder": {
+      "name": "qwen2.5-coder:7b-instruct-q6_K",
+      "label": "Qwen2.5 Coder 7B Q6",
+      "roles": ["code", "edit", "apply", "autocomplete"],
+      "options": {
+        "temperature": 0.15,
+        "top_p": 0.85,
+        "num_ctx": 16384,
+        "num_predict": 768
+      }
+    },
+    "reasoner": {
+      "name": "deepseek-r1:8b",
+      "label": "DeepSeek R1 8B",
+      "roles": ["reasoning", "math", "critic", "hard_questions"],
+      "options": {
+        "temperature": 0.35,
+        "top_p": 0.95,
+        "num_ctx": 32768,
+        "num_predict": 1536
+      }
+    },
+    "fast": {
+      "name": "gemma3n:e2b",
+      "label": "Gemma 3n E2B",
+      "roles": ["quick_chat", "classification", "rewrite"],
+      "options": {
+        "temperature": 0.25,
+        "top_p": 0.9,
+        "num_ctx": 32768,
+        "num_predict": 384
+      }
+    },
+    "embed": {
+      "name": "nomic-embed-text:latest",
+      "label": "Nomic Embed",
+      "roles": ["embed", "semantic_search"]
+    }
+  },
+  "routing": {
+    "code_keywords": ["code", "python", "javascript", "typescript", "bug", "error", "traceback", "function", "class", "refactor", "test", "pytest", "matlab", "solve_ivp", "程式", "代碼", "錯誤", "除錯", "重構", "測試"],
+    "reasoning_keywords": ["prove", "derive", "calculate", "optimize", "tradeoff", "why", "explain step", "推導", "證明", "計算", "為什麼", "權衡", "機制", "原理"],
+    "quick_keywords": ["summarize", "rewrite", "translate", "short", "quick", "摘要", "改寫", "翻譯", "簡短", "快速"]
+  }
+}

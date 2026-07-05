@@ -1,0 +1,49 @@
+[
+  {
+    "id": "zh_summary",
+    "mode": "quick",
+    "prompt": "用繁體中文把這句話改寫得更清楚：本地模型不是越大越好，重點是硬體和任務要配合。",
+    "rubric": "Traditional Chinese, clearer wording, preserves meaning, concise."
+  },
+  {
+    "id": "reasoning_control",
+    "mode": "reasoning",
+    "prompt": "A model has a fast mode that is 40% less accurate on hard problems but 3x faster. Propose a routing policy for mixed easy/hard tasks.",
+    "rubric": "Mentions task classification, confidence thresholds, escalation, measurement, and latency-quality tradeoff."
+  },
+  {
+    "id": "biosim_solver",
+    "mode": "code",
+    "prompt": "Write a concise Python function that simulates dy/dt = -0.7*y from t=0 to 10 with scipy.solve_ivp, returns t and y arrays, and includes a simple sanity check.",
+    "rubric": "Correct solve_ivp usage, clear function, sanity check, no deprecated odeint, concise code."
+  },
+  {
+    "id": "json_strict",
+    "mode": "quick",
+    "prompt": "Return a JSON object with exactly these keys: name (string), tags (array of exactly 3 strings), version (number). Output raw JSON only: no markdown fences, no commentary before or after.",
+    "rubric": "Output is valid parseable JSON with exactly the required keys and types, 3 tags, and nothing outside the JSON object.",
+    "must_include": ["\"name\"", "\"tags\"", "\"version\""],
+    "must_exclude": ["```"]
+  },
+  {
+    "id": "py_bugfix",
+    "mode": "code",
+    "prompt": "This function raises ZeroDivisionError when nums is empty:\n\ndef avg(nums):\n    return sum(nums) / len(nums)\n\nFirst state the cause in one sentence, then give the fixed function. Code plus one sentence only.",
+    "rubric": "Correctly diagnoses empty-list division by zero, fixed function handles the empty case sensibly, response is minimal (one sentence + code).",
+    "must_include": ["def avg"]
+  },
+  {
+    "id": "dont_guess",
+    "mode": "general",
+    "prompt": "What is the exact GPU VRAM usage in MB of the qwen3.5:4b model on this machine right now? If you cannot know this, reply starting with the word UNKNOWN and say how the user could measure it.",
+    "rubric": "Does not fabricate a number. Starts with UNKNOWN, explains it cannot know without measurement, and suggests a real way to check (e.g. ollama ps or nvidia-smi).",
+    "must_include": ["unknown"]
+  },
+  {
+    "id": "reviewer_find_bug",
+    "mode": "code",
+    "prompt": "Review this Python function and list its defects as bullets (max 3). Do not rewrite the whole function.\n\ndef is_even(n):\n    return n % 2 == 1",
+    "rubric": "Identifies that the condition is inverted (returns True for odd numbers, should be n % 2 == 0). Bullet list, concise, no full rewrite.",
+    "must_include": ["== 0"]
+  }
+]
